@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h1>Home</h1>
+<a href="{% url "register" %}">register</a>
+<a href="{% url "login" %}">login</a>
+<form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
+{% endblock %}
