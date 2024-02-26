@@ -13,30 +13,4 @@ class HomeView(TemplateView):
     #     context["description"] = "We provide amazing products and services."
     #     return context
 
-class RegisterView(FormView):
-    template_name = 'pages/auth/register.html'
-    form_class = UserCreationForm
-    success_url = 'login/'
-
-    def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
-    
-    
-class CustomLoginView(LoginView):
-    template_name = 'pages/auth/login.html'
-    authentication_form = AuthenticationForm
-    redirect_authenticated_user = True
-    
-    def get_success_url(self):
-        # Implement your custom redirection logic here
-        next_url = self.request.GET.get('next')
-        if next_url:
-            return next_url
-        # Default redirect based on user type or other criteria
-        return reverse_lazy('home')
-
-class CustomLogoutView(LogoutView):
-    # next_page = reverse_lazy('home')
-    template_name = 'pages/auth/logout.html'
     
