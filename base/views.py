@@ -22,9 +22,15 @@ class FileListView(ListView):
     def get_context_data(self, **kwargs):
         # TEXT = (1,)
         context = super().get_context_data(**kwargs)
+        d = []
         for i in File.objects.all():
-        #    TEXT = TEXT + (stt(i.file),)
-            context["text"] = stt(i.file)
-            return context
-        # context["text"] = stt(i.file)
+            temp = {
+                'url': i.file.url,
+                'text': stt(i.file)
+            }
+            d.append(temp)
+            # context["text"] = stt(i.file)
+        context['data'] = d
+        return context
+        # context["data"] = d
         # return context

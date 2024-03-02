@@ -20,12 +20,14 @@ def stt(wav_file):
    rec = vosk.KaldiRecognizer(model, wf.getframerate())
 
   while True:
-        data = wf.readframes(400000)
+        data = wf.readframes(wf.getnframes())
+
         if len(data) == 0:
             break
+
         if rec.AcceptWaveform(data):
-            data = json.loads(rec.Result())
-            return data["text"]
+            result = json.loads(rec.Result())
+            return result["text"]
         else:
             # f.write(rec.PartialResult() + "\n")
             pass

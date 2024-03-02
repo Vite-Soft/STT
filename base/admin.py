@@ -3,3 +3,5 @@ from .models import *
 # Register your models here.
 
 admin.site.register(File)
+admin.site.register(Language)
+admin.site.register(Type)
