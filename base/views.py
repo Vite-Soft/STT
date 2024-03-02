@@ -5,6 +5,7 @@ from django.views.generic.list import ListView
 from django.urls import reverse_lazy
 from .stt import stt
 from .models import *
+
 class HomeView(TemplateView):
     template_name = "pages/home.html"
 
