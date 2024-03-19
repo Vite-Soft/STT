@@ -11,7 +11,14 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["data"] = "data"
+        data = []
+        for i in File.objects.all():
+            temp = {
+                'url': i.file.url,
+                'text': stt(i.file)
+            }
+            data.append(temp)
+        context['data'] = data
         return context
     
 
@@ -29,3 +36,5 @@ class FileListView(TemplateView):
             data.append(temp)
         context['data'] = data
         return context
+    
+
