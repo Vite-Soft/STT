@@ -3,5 +3,5 @@ from .views import *
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
-    path('file/', FileListView.as_view(), name='file')
+    path('upload-audio/', upload_audio, name='upload_audio'),
 ]

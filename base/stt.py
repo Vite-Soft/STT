@@ -15,18 +15,17 @@ def stt(wav_file):
   if wf.getnchannels() != 1 or wf.getsampwidth() != 2 or wf.getcomptype() != "NONE":
     print("Audio file must be WAV format mono PCM.")
     sys.exit(1)
-
+    
   # Open the wave file
   with wave.open(wav_file, "rb") as wf:
-   
   # Load the Vosk model 
    model = vosk.Model(r"base/vosk-model-small-uz")
-   
+
    # Create a KaldiRecognizer
    rec = vosk.KaldiRecognizer(model, wf.getframerate())
 
   while True:
-        data = wf.readframes(wf.getnframes())
+        data = wf.readframes(wf.getnframes()) # Process audio in chunks
 
         if len(data) == 0:
             break
@@ -35,5 +34,6 @@ def stt(wav_file):
             result = json.loads(rec.Result())
             return result["text"]
         else:
+            # Handle partial results if needed
             # f.write(rec.PartialResult() + "\n")
             pass
